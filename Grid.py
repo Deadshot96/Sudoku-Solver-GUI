@@ -8,6 +8,16 @@ class Grid:
         self.width = WIDTH
         self.height = HEIGHT
         self.grid = None
+        self.win = None
+
+    def display_init(self):
+
+        pygame.init()
+        pygame.font.init()
+
+        self.win = pygame.display.set_mode((self.width, self.height))
+        pygame.display.set_caption("Sudoku Solver")
+        
 
     def quit(self):
         pygame.font.quit()
@@ -19,6 +29,8 @@ class Grid:
 
         while run:
             pass
+
+        self.quit()
 
 
 
