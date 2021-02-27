@@ -17,6 +17,9 @@ class Grid:
 
         self.win = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Sudoku Solver")
+
+    def draw(self, win: pygame.Surface):
+        pass
         
 
     def quit(self):
@@ -25,10 +28,20 @@ class Grid:
 
     def run(self):
 
-        run = True
+        self.display_init()
 
+        run = True
         while run:
-            pass
+            
+            for event in pygame.event.get():
+
+                if event.type == pygame.QUIT:
+                    run = False
+
+                if event.type == pygame.KEYDOWN:
+
+                    if event.key == pygame.K_1:
+                        print("1")
 
         self.quit()
 
