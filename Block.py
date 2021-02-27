@@ -41,7 +41,7 @@ class Block:
         self.selected = False
 
     def is_empty(self) -> bool:
-        return self.number == 0 and self.tempNum == 0
+        return self.number == 0
 
     def set_temp(self, num: int) -> None:
         self.tempNum = num
@@ -67,7 +67,7 @@ class Block:
             rect = self.x + 1, self.y + 1, self.size - 2, self.size - 2
             pygame.draw.rect(win, SELECTED_COLOR, rect, 2)
 
-        if not self.is_empty():
+        if not (self.number == 0 and self.tempNum == 0):
 
             if self.is_readonly():
                 numText = self.font.render(str(self.number), 1, MID_BLACK)
