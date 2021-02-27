@@ -54,6 +54,8 @@ class Sudoku:
         for i, row in enumerate(self.board):
             for j, element in enumerate(row):
                 self.grid[i][j].set_number(element)
+                if element != 0:
+                    self.grid[i][j].make_readonly()
 
     def get_row_col(self, pos: Tuple) -> Tuple:
         x, y = pos
@@ -132,7 +134,7 @@ class Sudoku:
                     pos = pygame.mouse.get_pos()
                     row, col = self.get_row_col(pos)
 
-                    if self.is_valid_dims(row, col):
+                    if self.is_valid_dims(row, col) and not self.grid[row][col].is_readonly():
                         if self.selected:
                             self.selected.deselect()
 
