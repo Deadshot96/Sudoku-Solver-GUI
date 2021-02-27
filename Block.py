@@ -18,6 +18,7 @@ class Block:
 
         pygame.font.init()
         self.font = pygame.font.SysFont('comicsans', 40)
+        self.tempfont = pygame.font.SysFont('comicsans', 30, False, True)
 
     def set_number(self, number: int) -> None:
         self.number = number
@@ -37,8 +38,19 @@ class Block:
     def deselect(self) -> None:
         self.selected = False
 
-    def is_empty(self) -> None:
-        return self.number == 0
+    def is_empty(self) -> bool:
+        return self.number == 0 and self.tempNum == 0
+
+    def set_temp(self, num: int) -> None:
+        self.tempNum = num
+
+    def remove_temp(self) -> None:
+        self.tempNum = 0
+
+    def set_valid(self) -> None:
+        self.number = self.tempNum
+        self.make_readonly()
+        self.tempNum = 0
     
     def draw(self, win: pygame.Surface):
         if self.is_selected():
@@ -46,9 +58,15 @@ class Block:
             pygame.draw.rect(win, SELECTED_COLOR, rect, 2)
 
         if not self.is_empty():
-            numText = self.font.render(str(self.number), 1, MID_BLACK)
-            w, h = numText.get_size()
 
-            win.blit(numText, (self.x + (self.size - w) // 2, self.y + (self.size - h) // 2))
-    
+            if self.is_readonly():
+                numText = self.font.render(str(self.number), 1, MID_BLACK)
+                w, h = numText.get_size()
+
+                win.blit(numText, (self.x + (self.size - w) // 2, self.y + (self.size - h) // 2))
+            
+            else:
+                numText = self.tempfont.render(str(self.tempNum), 1, TEMP_BLACK)
+                w, h = numText.get_size()
+                win.blit(numText, (self.x + 5, self.y + 5))
 
