@@ -134,12 +134,14 @@ class Sudoku:
                     pos = pygame.mouse.get_pos()
                     row, col = self.get_row_col(pos)
 
-                    if self.is_valid_dims(row, col) and not self.grid[row][col].is_readonly():
+                    if self.is_valid_dims(row, col):
                         if self.selected:
                             self.selected.deselect()
 
-                        self.selected = self.grid[row][col]
-                        self.selected.select()
+
+                        if not self.grid[row][col].is_readonly():
+                            self.selected = self.grid[row][col]
+                            self.selected.select()
 
                     print(row, col, sep='\t')
 
