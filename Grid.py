@@ -95,9 +95,33 @@ class Sudoku:
             for block in row:
                 block.draw(win)
 
+    def verify_temp(self):
+        if self.selected:
+            row, col = self.selected.get_dims()
+            num = self.selected.get_number()
+
+            for i in range(9):
+                if self.grid[row][i] == num and i != col:
+                    return False
+
+                if self.grid[i][col] == num and i != row:
+                    return False
+
+            boxRow = row // 3
+            boxCol = col // 3
+
+            for i in range(3 * boxRow, 3 * boxRow + 3):
+                for j in range(3 * boxCol, 3 * boxCol + 3):
+                    if self.grid[i][j] == num and i != row and j != col:
+                        return False
+            
+            return True
+
+        return False
 
 
-                
+
+
     def draw(self, win: pygame.Surface):
         win.fill(BACKGROUND_COLOR)
         self.sudokuWin.fill(CREAM)
@@ -158,7 +182,8 @@ class Sudoku:
                         self.selected.remove_temp()
 
                     if event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
-                        self.selected.remove_temp()
+                        if self.verify_temp():
+                            self.selected.set_valid()
                 
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
