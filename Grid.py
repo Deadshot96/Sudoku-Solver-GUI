@@ -1,6 +1,7 @@
 import pygame
 from Block import Block
 from settings import *
+from typing import Tuple
 
 class Sudoku:
 
@@ -52,6 +53,17 @@ class Sudoku:
         for i, row in enumerate(self.board):
             for j, element in enumerate(row):
                 self.grid[i][j].set_number(element)
+
+    def get_row_col(self, pos: Tuple) -> Tuple:
+        x, y = pos
+        row = (y - self.y_delta) // self.size
+        col = (x - self.x_delta) // self.size
+
+        return row, col
+
+    def is_valid_dims(self, row: int, col: int) -> bool:
+        return row in range(9) and col in range(9)
+
 
 
     def draw_grid(self, win: pygame.Surface):
@@ -106,6 +118,11 @@ class Sudoku:
 
                     if event.key == pygame.K_1:
                         print("1")
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    pos = pygame.mouse.get_pos()
+                    row, col = self.get_row_col(pos)
+                    print(row, col, sep='\t')
 
             self.draw(self.win)
 
