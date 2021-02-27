@@ -32,6 +32,7 @@ class Block:
 
     def make_readonly(self) -> None:
         self.readonly = True
+        self.tempNum = self.number
 
     def is_readonly(self) -> bool:
         return self.readonly
@@ -52,9 +53,14 @@ class Block:
         return self.row, self.col
 
     def set_valid(self) -> None:
-        self.number = self.tempNum
+        self.set_number(self.tempNum)
         self.make_readonly()
-        self.tempNum = 0
+        
+    def get_number(self) -> int:
+        return self.tempNum
+
+    def __eq__(self, num: int) -> bool:
+        return self.tempNum == num
     
     def draw(self, win: pygame.Surface):
         if self.is_selected():
