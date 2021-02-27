@@ -94,10 +94,10 @@ class Sudoku:
         for row in self.grid:
             for block in row:
                 block.draw(win)
-        
 
-            
 
+
+                
     def draw(self, win: pygame.Surface):
         win.fill(BACKGROUND_COLOR)
         self.sudokuWin.fill(CREAM)
