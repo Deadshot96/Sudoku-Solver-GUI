@@ -7,8 +7,13 @@ class Sudoku:
     def __init__(self):
         self.width = WIDTH
         self.height = HEIGHT
+        self.sudoku_width = SUDOKU_WIDTH
+        self.sudoku_height = SUDOKU_HEIGHT
+        self.x_delta = X_DELTA
+        self.y_delta = Y_DELTA
         self.grid = None
         self.win = None
+        self.sudokuWin = None
         self.clock = None
         self.fps = FPS
 
@@ -20,10 +25,14 @@ class Sudoku:
         self.win = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Sudoku Solver")
 
+        self.sudokuWin = self.win.subsurface((self.x_delta, self.y_delta, self.sudoku_width, self.sudoku_width))
+
         self.clock = pygame.time.Clock()
 
     def draw(self, win: pygame.Surface):
-        win.fill((51, 51, 51))
+        win.fill(MID_BLACK)
+        self.sudokuWin.fill(CREAM)
+
 
         pygame.display.update()
         
