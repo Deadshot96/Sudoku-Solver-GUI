@@ -9,6 +9,8 @@ class Grid:
         self.height = HEIGHT
         self.grid = None
         self.win = None
+        self.clock = None
+        self.fps = FPS
 
     def display_init(self):
 
@@ -18,8 +20,12 @@ class Grid:
         self.win = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Sudoku Solver")
 
+        self.clock = pygame.time.Clock()
+
     def draw(self, win: pygame.Surface):
-        pass
+        win.fill((51, 51, 51))
+
+        pygame.display.update()
         
 
     def quit(self):
@@ -32,7 +38,7 @@ class Grid:
 
         run = True
         while run:
-            
+            self.clock.tick(self.fps)
             for event in pygame.event.get():
 
                 if event.type == pygame.QUIT:
@@ -42,6 +48,8 @@ class Grid:
 
                     if event.key == pygame.K_1:
                         print("1")
+
+            self.draw(self.win)
 
         self.quit()
 
