@@ -1,5 +1,6 @@
 import pygame
 from settings import *
+from typing import Tuple
 
 class Block:
 
@@ -46,6 +47,9 @@ class Block:
 
     def remove_temp(self) -> None:
         self.tempNum = 0
+
+    def get_dims(self) -> Tuple:
+        return self.row, self.col
 
     def set_valid(self) -> None:
         self.number = self.tempNum
