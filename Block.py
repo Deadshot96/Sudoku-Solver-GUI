@@ -14,6 +14,7 @@ class Block:
         self.y = self.size * self.row
         self.selected = False
         self.tempNum = 0
+        self.readonly = False
 
         pygame.font.init()
         self.font = pygame.font.SysFont('comicsans', 40)
@@ -26,6 +27,12 @@ class Block:
 
     def is_selected(self) -> None:
         return self.selected
+
+    def make_readonly(self) -> None:
+        self.readonly = True
+
+    def is_readonly(self) -> bool:
+        return self.readonly
 
     def deselect(self) -> None:
         self.selected = False
