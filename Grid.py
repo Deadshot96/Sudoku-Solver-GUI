@@ -154,6 +154,11 @@ class Sudoku:
                     if event.key in (pygame.K_9, pygame.K_KP9):
                         self.selected.set_temp(9)
 
+                    if event.key == pygame.K_ESCAPE:
+                        self.selected.remove_temp()
+
+                    if event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
+                        self.selected.remove_temp()
                 
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
