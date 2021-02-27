@@ -35,8 +35,8 @@ class Block:
     
     def draw(self, win: pygame.Surface):
         if self.is_selected():
-            rect = self.x, self.y, self.size, self.size
-            pygame.draw.rect(win, SELECTED_COLOR, rect, 1)
+            rect = self.x + 1, self.y + 1, self.size - 2, self.size - 2
+            pygame.draw.rect(win, SELECTED_COLOR, rect, 2)
 
         if not self.is_empty():
             numText = self.font.render(str(self.number), 1, MID_BLACK)
