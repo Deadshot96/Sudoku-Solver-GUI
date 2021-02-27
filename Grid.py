@@ -2,7 +2,7 @@ import pygame
 from Block import Block
 from settings import *
 
-class Grid:
+class Sudoku:
 
     def __init__(self):
         self.width = WIDTH
@@ -56,5 +56,5 @@ class Grid:
 
 
 if __name__ == "__main__":
-    X = Grid()
+    X = Sudoku()
     X.run()
