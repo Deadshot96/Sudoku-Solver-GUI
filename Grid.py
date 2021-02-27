@@ -127,8 +127,34 @@ class Sudoku:
 
                 if event.type == pygame.KEYDOWN:
 
-                    if event.key == pygame.K_1:
-                        print("1")
+                    if event.key in (pygame.K_1, pygame.K_KP1):
+                        self.selected.set_temp(1)
+
+                    if event.key in (pygame.K_2, pygame.K_KP2):
+                        self.selected.set_temp(2)
+
+                    if event.key in (pygame.K_3, pygame.K_KP3):
+                        self.selected.set_temp(3)
+
+                    if event.key in (pygame.K_4, pygame.K_KP4):
+                        self.selected.set_temp(4)
+
+                    if event.key in (pygame.K_5, pygame.K_KP5):
+                        self.selected.set_temp(5)
+
+                    if event.key in (pygame.K_6, pygame.K_KP6):
+                        self.selected.set_temp(6)
+
+                    if event.key in (pygame.K_7, pygame.K_KP7):
+                        self.selected.set_temp(7)
+
+                    if event.key in (pygame.K_8, pygame.K_KP8):
+                        self.selected.set_temp(8)
+
+                    if event.key in (pygame.K_9, pygame.K_KP9):
+                        self.selected.set_temp(9)
+
+                
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
