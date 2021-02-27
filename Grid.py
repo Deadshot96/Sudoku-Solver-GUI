@@ -41,6 +41,20 @@ class Sudoku:
 
         self.clock = pygame.time.Clock()
 
+    def grid_init(self):
+        self.grid = list()
+        for row in range(9):
+            self.grid.append(list())
+            for col in range(9):
+                self.grid[row].append(Block(row, col))
+
+        for i, row in enumerate(self.board):
+            for j, element in enumerate(row):
+                self.grid[i][j].set_number(element)
+
+
+            
+
     def draw(self, win: pygame.Surface):
         win.fill(MID_BLACK)
         self.sudokuWin.fill(CREAM)
