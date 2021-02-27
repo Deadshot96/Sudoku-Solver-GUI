@@ -23,6 +23,7 @@ class Sudoku:
         self.sudoku_height = SUDOKU_HEIGHT
         self.x_delta = X_DELTA
         self.y_delta = Y_DELTA
+        self.size = SIZE
         self.grid = None
         self.win = None
         self.sudokuWin = None
@@ -53,12 +54,34 @@ class Sudoku:
                 self.grid[i][j].set_number(element)
 
 
+    def draw_grid(self, win: pygame.Surface):
+        width, height = win.get_size()
+        color = MID_BLACK
+
+        # pygame.draw.line(win, color, (0, 0), (width, 0), 2)
+        # pygame.draw.line(win, color, (0, 0), (0, height), 2)
+
+        for i in range(9):
+            linewidth = 2 if i % 3 == 0 else 1
+
+            pygame.draw.line(win, color, (0, i * self.size), (width, i * self.size), linewidth)
+            pygame.draw.line(win, color, (i * self.size, 0), (i * self.size, height), linewidth)
+
+        pygame.draw.line(win, color, (width - 2, 0), (width - 2, height), 2)
+        pygame.draw.line(win, color, (0, height - 2), (width, height - 2), 2)
+
+
+
+    def draw_board(self):
+        pass
+
             
 
     def draw(self, win: pygame.Surface):
-        win.fill(MID_BLACK)
+        win.fill(BACKGROUND_COLOR)
         self.sudokuWin.fill(CREAM)
 
+        self.draw_grid(self.sudokuWin)
 
         pygame.display.update()
         
