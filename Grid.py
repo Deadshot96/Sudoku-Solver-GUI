@@ -119,6 +119,9 @@ class Sudoku:
 
         return False
 
+    def solve_gui(self):
+        pass
+
 
 
 
