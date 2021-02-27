@@ -179,7 +179,8 @@ class Sudoku:
                         self.selected.set_temp(9)
 
                     if event.key == pygame.K_ESCAPE:
-                        self.selected.remove_temp()
+                        if self.selected:
+                            self.selected.remove_temp()
 
                     if event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
                         if self.verify_temp():
