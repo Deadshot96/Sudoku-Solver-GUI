@@ -30,6 +30,7 @@ class Sudoku:
         self.sudokuWin = None
         self.clock = None
         self.fps = FPS
+        self.selected = None
 
     def display_init(self):
 
@@ -84,8 +85,14 @@ class Sudoku:
 
 
 
-    def draw_board(self):
-        pass
+    def draw_board(self, win: pygame.Surface) -> None:
+        if self.grid is None:
+            return
+
+        for row in self.grid:
+            for block in row:
+                block.draw(win)
+        
 
             
 
@@ -94,6 +101,7 @@ class Sudoku:
         self.sudokuWin.fill(CREAM)
 
         self.draw_grid(self.sudokuWin)
+        self.draw_board(self.sudokuWin)
 
         pygame.display.update()
         
@@ -105,6 +113,7 @@ class Sudoku:
     def run(self):
 
         self.display_init()
+        self.grid_init()
 
         run = True
         while run:
@@ -122,6 +131,14 @@ class Sudoku:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     pos = pygame.mouse.get_pos()
                     row, col = self.get_row_col(pos)
+
+                    if self.is_valid_dims(row, col):
+                        if self.selected:
+                            self.selected.deselect()
+
+                        self.selected = self.grid[row][col]
+                        self.selected.select()
+
                     print(row, col, sep='\t')
 
             self.draw(self.win)
