@@ -69,7 +69,7 @@ class Sudoku:
 
 
 
-    def draw_grid(self, win: pygame.Surface):
+    def draw_grid(self, win: pygame.Surface) -> None:
         width, height = win.get_size()
         color = MID_BLACK
 
