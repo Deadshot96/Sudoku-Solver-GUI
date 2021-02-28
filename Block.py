@@ -34,6 +34,10 @@ class Block:
         self.readonly = True
         self.tempNum = self.number
 
+    def remove_readonly(self) -> None:
+        self.readonly = False
+        self.number = 0
+
     def is_readonly(self) -> bool:
         return self.readonly
 
