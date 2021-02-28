@@ -122,6 +122,14 @@ class Sudoku:
     def solve_gui(self):
         pass
 
+    def find_empty(self) -> Tuple:
+        for row in self.grid:
+            for block in row:
+                if block.is_empty():
+                    row, col = block.get_dims()
+                    return row, col
+
+        return None
 
 
 
