@@ -95,9 +95,9 @@ class Sudoku:
             for block in row:
                 block.draw(win)
 
-    def verify_temp(self):
+    def verify_temp(self, row: int, col: int) -> bool:
         if self.selected:
-            row, col = self.selected.get_dims()
+            # row, col = self.selected.get_dims()
             num = self.selected.get_number()
 
             for i in range(9):
@@ -186,8 +186,10 @@ class Sudoku:
                             self.selected.remove_temp()
 
                     if event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
-                        if self.verify_temp():
-                            self.selected.set_valid()
+                        if self.selected:
+                            row, col = self.selected.get_dims()
+                            if self.verify_temp(row, col):
+                                self.selected.set_valid()
                 
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
