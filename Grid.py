@@ -128,7 +128,10 @@ class Sudoku:
         row, col = pos
 
         for i in range(1, 10):
-            pass
+            if self.verify_temp(row, col, i):
+                self.grid[row][col].set_number(i)
+                self.grid[row][col].make_readonly()
+                self.draw(self.sudokuWin)
 
 
 
@@ -146,8 +149,8 @@ class Sudoku:
 
 
 
-    def draw(self, win: pygame.Surface):
-        win.fill(BACKGROUND_COLOR)
+    def draw(self):
+        self.win.fill(BACKGROUND_COLOR)
         self.sudokuWin.fill(CREAM)
 
         self.draw_grid(self.sudokuWin)
@@ -230,7 +233,7 @@ class Sudoku:
 
                     print(row, col, sep='\t')
 
-            self.draw(self.win)
+            self.draw()
 
         self.quit()
 
