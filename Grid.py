@@ -131,7 +131,19 @@ class Sudoku:
             if self.verify_temp(row, col, i):
                 self.grid[row][col].set_number(i)
                 self.grid[row][col].make_readonly()
-                self.draw(self.sudokuWin)
+                self.draw()
+                pygame.time.delay(100)
+
+                if self.solve_gui():
+                    return True
+
+                self.grid[row][col].set_number(0)
+                self.grid[row][col].remove_readonly()
+                self.grid[row][col].remove_temp()
+                self.draw()
+                pygame.time.delay(100)
+        
+        return False
 
 
 
@@ -215,6 +227,9 @@ class Sudoku:
                             num = self.selected.get_number()
                             if self.verify_temp(row, col, num):
                                 self.selected.set_valid()
+
+                    if event.key == pygame.K_SPACE:
+                        self.solve_gui()
                 
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
