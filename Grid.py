@@ -154,31 +154,31 @@ class Sudoku:
 
                 if event.type == pygame.KEYDOWN:
 
-                    if event.key in (pygame.K_1, pygame.K_KP1):
+                    if event.key in (pygame.K_1, pygame.K_KP1) and self.selected:
                         self.selected.set_temp(1)
 
-                    if event.key in (pygame.K_2, pygame.K_KP2):
+                    if event.key in (pygame.K_2, pygame.K_KP2) and self.selected:
                         self.selected.set_temp(2)
 
-                    if event.key in (pygame.K_3, pygame.K_KP3):
+                    if event.key in (pygame.K_3, pygame.K_KP3) and self.selected:
                         self.selected.set_temp(3)
 
-                    if event.key in (pygame.K_4, pygame.K_KP4):
+                    if event.key in (pygame.K_4, pygame.K_KP4) and self.selected:
                         self.selected.set_temp(4)
 
-                    if event.key in (pygame.K_5, pygame.K_KP5):
+                    if event.key in (pygame.K_5, pygame.K_KP5) and self.selected:
                         self.selected.set_temp(5)
 
-                    if event.key in (pygame.K_6, pygame.K_KP6):
+                    if event.key in (pygame.K_6, pygame.K_KP6) and self.selected:
                         self.selected.set_temp(6)
 
-                    if event.key in (pygame.K_7, pygame.K_KP7):
+                    if event.key in (pygame.K_7, pygame.K_KP7) and self.selected:
                         self.selected.set_temp(7)
 
-                    if event.key in (pygame.K_8, pygame.K_KP8):
+                    if event.key in (pygame.K_8, pygame.K_KP8) and self.selected:
                         self.selected.set_temp(8)
 
-                    if event.key in (pygame.K_9, pygame.K_KP9):
+                    if event.key in (pygame.K_9, pygame.K_KP9) and self.selected:
                         self.selected.set_temp(9)
 
                     if event.key == pygame.K_ESCAPE:
@@ -199,6 +199,7 @@ class Sudoku:
                     if self.is_valid_dims(row, col):
                         if self.selected:
                             self.selected.deselect()
+                            self.selected = None
 
 
                         if not self.grid[row][col].is_readonly():
