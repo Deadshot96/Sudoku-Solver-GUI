@@ -31,6 +31,7 @@ class Sudoku:
         self.clock = None
         self.fps = FPS
         self.selected = None
+        self.font = None
 
     def display_init(self):
 
@@ -39,10 +40,19 @@ class Sudoku:
 
         self.win = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption("Sudoku Solver")
+        self.win.fill(BACKGROUND_COLOR)
+        
 
         self.sudokuWin = self.win.subsurface((self.x_delta, self.y_delta, self.sudoku_width, self.sudoku_width))
 
         self.clock = pygame.time.Clock()
+
+        self.font = pygame.font.SysFont("comicsansms", 40)
+        self.title = self.font.render('Sudoku solver', 1, MID_BLACK)
+        w, h = self.title.get_size()
+
+        self.win.blit(self.title, ((self.width - w) // 2, (self.y_delta - h) // 2))
+        pygame.display.update()
 
     def grid_init(self):
         self.grid = list()
@@ -162,7 +172,6 @@ class Sudoku:
 
 
     def draw(self):
-        self.win.fill(BACKGROUND_COLOR)
         self.sudokuWin.fill(CREAM)
 
         self.draw_grid(self.sudokuWin)
