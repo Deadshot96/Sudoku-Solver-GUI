@@ -95,10 +95,10 @@ class Sudoku:
             for block in row:
                 block.draw(win)
 
-    def verify_temp(self, row: int, col: int) -> bool:
+    def verify_temp(self, row: int, col: int, num: int) -> bool:
         if self.selected:
             # row, col = self.selected.get_dims()
-            num = self.selected.get_number()
+            # num = self.selected.get_number()
 
             for i in range(9):
                 if self.grid[row][i] == num and i != col:
@@ -120,7 +120,20 @@ class Sudoku:
         return False
 
     def solve_gui(self):
-        pass
+        pos = self.find_empty()
+
+        if pos is None:
+            return True
+
+        row, col = pos
+
+        for i in range(1, 10):
+            pass
+
+
+
+
+
 
     def find_empty(self) -> Tuple:
         for row in self.grid:
@@ -196,7 +209,8 @@ class Sudoku:
                     if event.key in (pygame.K_RETURN, pygame.K_KP_ENTER):
                         if self.selected:
                             row, col = self.selected.get_dims()
-                            if self.verify_temp(row, col):
+                            num = self.selected.get_number()
+                            if self.verify_temp(row, col, num):
                                 self.selected.set_valid()
                 
 
