@@ -36,7 +36,7 @@ class Block:
 
     def remove_readonly(self) -> None:
         self.readonly = False
-        self.number = 0
+        self.number = 0 
 
     def is_readonly(self) -> bool:
         return self.readonly
